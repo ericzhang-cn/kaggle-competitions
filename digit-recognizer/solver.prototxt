@@ -1,3 +1,4 @@
+solver_mode: CPU
 net: "./net.prototxt"
 base_lr: 0.001
 momentum: 0.5
