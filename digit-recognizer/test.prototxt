@@ -1,0 +1,60 @@
+name: "hwd"
+layer {
+  name: "data"
+  type: "HDF5Data"
+  top: "data"
+  top: "label"
+  hdf5_data_param {
+    source: "test.filelist"
+    batch_size: 64
+  }
+}
+layer {
+  name: "conv"
+  type: "Convolution"
+  bottom: "data"
+  top: "conv"
+  convolution_param {
+    num_output: 128
+    kernel_size: 28
+    stride: 1
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler { 
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layer {
+  name: "relu"
+  type: "ReLU"
+  bottom: "conv"
+  top: "conv"
+}
+layer {
+  name: "fc"
+  type: "InnerProduct"
+  bottom: "conv"
+  top: "fc"
+  inner_product_param {
+    num_output: 10
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layer {
+  name: "loss"
+  type: "SoftmaxWithLoss"
+  bottom: "fc"
+  bottom: "label"
+  top: "loss"
+}

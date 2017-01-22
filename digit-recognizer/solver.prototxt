@@ -1,0 +1,7 @@
+net: "./net.prototxt"
+base_lr: 0.001
+momentum: 0.5
+weight_decay: 0.0005
+lr_policy: "inv"
+max_iter: 500
+display: 10
