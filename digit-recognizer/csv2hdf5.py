@@ -11,7 +11,7 @@ W = 28
 H = 28
 
 df = pandas.read_csv('./train.csv')
-f = h5py.File('test.hdf5', 'w')
+f = h5py.File('train.hdf5', 'w')
 
 ds_label = f.create_dataset('label', (N,), dtype='i')
 ds_label[:] = df['label']
